@@ -5,6 +5,10 @@ def hello(request):
     visitor_name = request.GET.get('visitor_name', 'Guest')
     client_ip = request.META.get('REMOTE_ADDR', '127.0.0.1')
 
+    # Hardcoding an example IP for demonstration purposes
+    if client_ip == '127.0.0.1':
+        client_ip = '8.8.8.8'  # Example IP address (Google's public DNS server)
+
     # Get the location based on IP address
     location_response = requests.get(f"https://ipinfo.io/{client_ip}/json")
     location_data = location_response.json()
